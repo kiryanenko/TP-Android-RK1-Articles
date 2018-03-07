@@ -18,11 +18,18 @@
             android:layout_height="match_parent"
             android:layout_weight="0.33" />
 
-        <FrameLayout
-            android:id="@+id/article_container"
+        <ScrollView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.67" />
+            android:layout_height="wrap_content"
+            android:layout_weight="0.67">
+
+            <FrameLayout
+                android:id="@+id/article_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </ScrollView>
+
     </LinearLayout>
 
     <FrameLayout
