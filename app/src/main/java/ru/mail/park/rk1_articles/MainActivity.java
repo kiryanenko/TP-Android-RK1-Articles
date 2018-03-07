@@ -12,9 +12,6 @@ import ru.mail.park.articlelistlib.ArticleListFragment;
 import ru.mail.park.articlelistlib.OnArticleClickListener;
 
 public class MainActivity extends AppCompatActivity implements OnArticleClickListener {
-    private ArticleListFragment articleListFragment;
-    private ArticleFragment articleFragment;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
         Fragment article = getSupportFragmentManager().findFragmentById(R.id.article_container);
         Fragment articleList = getSupportFragmentManager().findFragmentById(R.id.article_list_container);
 
-        articleListFragment = new ArticleListFragment();
-        articleFragment = new ArticleFragment();
+        ArticleListFragment articleListFragment = new ArticleListFragment();
+        ArticleFragment articleFragment = new ArticleFragment();
 
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -54,10 +51,9 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
 
     @Override
     public void onArticleClick(Article article) {
-        articleFragment = new ArticleFragment(article);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        ArticleFragment articleFragment = ArticleFragment.newInstance(article);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
         int orientation = getResources().getConfiguration().orientation;
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             transaction.replace(R.id.main_container, articleFragment);

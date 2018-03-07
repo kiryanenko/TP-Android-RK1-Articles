@@ -3,6 +3,7 @@ package ru.mail.park.rk1_articles;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,16 +13,21 @@ import ru.mail.park.articlelistlib.Article;
 
 
 public class ArticleFragment extends Fragment {
-    Article article;
+    private Article article;
 
-    public ArticleFragment(Article article) {
-        super();
-        this.article = article;
+    public static ArticleFragment newInstance(Article article) {
+        ArticleFragment articleFragment = new ArticleFragment();
+        Bundle args = new Bundle();
+        args.putSerializable("article", article);
+        articleFragment.setArguments(args);
+        return articleFragment;
     }
 
-    public ArticleFragment() {
-        super();
-        this.article = null;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        article = getArguments() != null ? (Article) getArguments().getSerializable("article") : null;
     }
 
     @Nullable
@@ -39,6 +45,6 @@ public class ArticleFragment extends Fragment {
             articleDescriptionView.setText(article.getContent());
         }
 
-        return  view;
+        return view;
     }
 }
