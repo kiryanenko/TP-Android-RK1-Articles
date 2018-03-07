@@ -5,10 +5,31 @@
     tools:context="ru.mail.park.rk1_articles.ArticleFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="ArticleFragment"
-        android:background="#1eff3c"/>
+        android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/articleTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/articleDateTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="viewEnd"
+            android:textColor="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/articleDescriptionTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+    </LinearLayout>
 </FrameLayout>

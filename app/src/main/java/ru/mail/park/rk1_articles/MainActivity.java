@@ -13,6 +13,8 @@ import ru.mail.park.articlelistlib.ArticleListFragment;
 import ru.mail.park.articlelistlib.OnArticleClickListener;
 
 public class MainActivity extends AppCompatActivity implements OnArticleClickListener {
+    private ArticleListFragment articleListFragment;
+    private ArticleFragment articleFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
         Fragment article = getSupportFragmentManager().findFragmentById(R.id.article_container);
         Fragment articleList = getSupportFragmentManager().findFragmentById(R.id.article_list_container);
 
+        articleListFragment = new ArticleListFragment();
+        articleFragment = new ArticleFragment();
+
         int orientation = getResources().getConfiguration().orientation;
         Log.i("orientation", Integer.valueOf(orientation).toString());
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -35,20 +40,22 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
             if (articleList != null && articleList.isAdded()) {
                 transaction.remove(articleList);
             }
-            transaction.replace(R.id.main_container, new ArticleListFragment());
+            transaction.replace(R.id.main_container, articleListFragment);
         } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             if (main != null && main.isAdded()) {
                 transaction.remove(main);
             }
-            transaction.replace(R.id.article_container, new ArticleFragment());
-            transaction.replace(R.id.article_list_container, new ArticleListFragment());
+            transaction.replace(R.id.article_container, articleFragment);
+            transaction.replace(R.id.article_list_container, articleListFragment);
         }
         transaction.commit();
+
+        articleListFragment.setOnArticleClickListener(this);
     }
 
 
     @Override
     public void onArticleClick(Article article) {
-
+        articleFragment.show(article);
     }
 }
