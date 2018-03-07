@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
             FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             transaction.replace(R.id.main_container, articleFragment);
+            transaction.addToBackStack(null);
 
             transaction.commit();
         }
