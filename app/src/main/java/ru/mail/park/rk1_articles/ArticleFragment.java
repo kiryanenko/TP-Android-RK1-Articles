@@ -16,6 +16,18 @@ public class ArticleFragment extends Fragment {
     TextView articleDateView;
     TextView articleDescriptionView;
 
+    Article article;
+
+    public ArticleFragment(Article article) {
+        super();
+        this.article = article;
+    }
+
+    public ArticleFragment() {
+        super();
+        this.article = null;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,6 +36,12 @@ public class ArticleFragment extends Fragment {
         articleTitleView = (TextView) view.findViewById(R.id.articleTitleTextView);
         articleDateView = (TextView) view.findViewById(R.id.articleDateTextView);
         articleDescriptionView = (TextView) view.findViewById(R.id.articleDescriptionTextView);
+
+        if (article != null) {
+            articleTitleView.setText(article.getTitle());
+            articleDateView.setText(article.getDate().toString());
+            articleDescriptionView.setText(article.getContent());
+        }
 
         return  view;
     }

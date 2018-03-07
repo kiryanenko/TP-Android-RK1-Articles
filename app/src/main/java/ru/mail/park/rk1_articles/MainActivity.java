@@ -54,8 +54,7 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
 
     @Override
     public void onArticleClick(Article article) {
-        articleFragment.show(article);
-
+        articleFragment = new ArticleFragment(article);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -64,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
 
             transaction.commit();
         }
+
     }
 
 
