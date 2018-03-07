@@ -12,10 +12,6 @@ import ru.mail.park.articlelistlib.Article;
 
 
 public class ArticleFragment extends Fragment {
-    TextView articleTitleView;
-    TextView articleDateView;
-    TextView articleDescriptionView;
-
     Article article;
 
     public ArticleFragment(Article article) {
@@ -33,9 +29,9 @@ public class ArticleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_article, container, false);
 
-        articleTitleView = (TextView) view.findViewById(R.id.articleTitleTextView);
-        articleDateView = (TextView) view.findViewById(R.id.articleDateTextView);
-        articleDescriptionView = (TextView) view.findViewById(R.id.articleDescriptionTextView);
+        TextView articleTitleView = (TextView) view.findViewById(R.id.articleTitleTextView);
+        TextView articleDateView = (TextView) view.findViewById(R.id.articleDateTextView);
+        TextView articleDescriptionView = (TextView) view.findViewById(R.id.articleDescriptionTextView);
 
         if (article != null) {
             articleTitleView.setText(article.getTitle());
@@ -44,11 +40,5 @@ public class ArticleFragment extends Fragment {
         }
 
         return  view;
-    }
-
-    public void show(Article article) {
-        articleTitleView.setText(article.getTitle());
-        articleDateView.setText(article.getDate().toString());
-        articleDescriptionView.setText(article.getContent());
     }
 }

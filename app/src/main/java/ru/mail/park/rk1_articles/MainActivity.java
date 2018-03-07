@@ -55,16 +55,18 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
     @Override
     public void onArticleClick(Article article) {
         articleFragment = new ArticleFragment(article);
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
 
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        int orientation = getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             transaction.replace(R.id.main_container, articleFragment);
             transaction.addToBackStack(null);
-
-            transaction.commit();
+        } else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            transaction.replace(R.id.article_container, articleFragment);
         }
 
+        transaction.commit();
     }
 
 
