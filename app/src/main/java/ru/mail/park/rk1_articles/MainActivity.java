@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
         articleFragment = new ArticleFragment();
 
         int orientation = getResources().getConfiguration().orientation;
-        Log.i("orientation", Integer.valueOf(orientation).toString());
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             if (article != null && article.isAdded()) {
                 transaction.remove(article);
@@ -57,5 +56,14 @@ public class MainActivity extends AppCompatActivity implements OnArticleClickLis
     @Override
     public void onArticleClick(Article article) {
         articleFragment.show(article);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+            transaction.replace(R.id.main_container, articleFragment);
+
+            transaction.commit();
+        }
     }
 }
